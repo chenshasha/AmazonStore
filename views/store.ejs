@@ -1,0 +1,37 @@
+<!-- views/profile.ejs -->
+<!doctype html>
+<html>
+<head>
+	<title>Amazon Store</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<style>
+		body 		{ padding-top:80px; word-wrap:break-word; }
+	</style>
+</head>
+<body>
+<div class="container">
+
+	<div class="page-header text-center">
+		<h1><span class="fa fa-anchor"></span> Shop Books</h1>
+		<strong>Email</strong>: <%= user.local.email %><br>
+		<a href="/cart" class="btn btn-default btn-sm">Cart   </a>
+        <a href="/profile" class="btn btn-default btn-sm">Account</a>
+        <a href="/logout" class="btn btn-default btn-sm">Logout </a>
+	</div>
+
+	<a class="update-link" href="/product/<%= books.id %>"><%= books.title %></a>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</body>
+</html>
