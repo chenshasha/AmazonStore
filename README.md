@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Complete Guide to Node Authentication
 
 Code for the entire scotch.io tutorial series: Complete Guide to Node Authentication
@@ -22,4 +21,3 @@ AmazonStore
 ===========
 
 Amazon Store node.js
->>>>>>> 9dce29acc794d97177f16d97a7bf6e92f71577dd
