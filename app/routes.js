@@ -8,32 +8,30 @@ var User            = require('../app/models/user');
 
 module.exports = function(app, passport) {
 
-    //routes to shopping cart page when want to view the cart
-    //app.get(  '/cart', isLoggedIn, function(req, res) {
-
-    //    res.render('cart.ejs', {
-    //        user : req.user // get the user out of session and pass to template
-    //    });
-    //});
-
     // add item to chart
     app.post(  '/cart', isLoggedIn, function(req, res) {
 
         //console.log(req.param('addBookID'));
         //console.log(req.user.local.cart);
         //req.user.local.cart.save({$push: {id : req.param('addBookID'), quantity: "1"}});
+
         User.findById(req.user.id,function(err, result){
             result.local.cart.push({
                 id: req.param('addBookID'),
                 quantity: "1"
-
             })
             result.save();
-
         });
+
+        res.redirect('/store');
+
+
+    });
+    app.get(  '/viewcart', isLoggedIn, function(req, res) {
+
         res.render('cart.ejs', {
-                    user : req.user // get the user out of session and pass to template
-                });
+            user : req.user // get the user out of session and pass to template
+        });
 
     });
 
@@ -62,7 +60,7 @@ module.exports = function(app, passport) {
             if(err) { };
             res.render('store.ejs',{
                 user  : req.user,
-                books : store_books[0]
+                books : store_books
             });
         });
     });
@@ -141,3 +139,4 @@ function isLoggedIn(req, res, next) {
 	// if they aren't redirect them to the home page
 	res.redirect('/');
 }
+
