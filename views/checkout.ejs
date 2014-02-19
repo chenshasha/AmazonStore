@@ -23,11 +23,10 @@
 	</div>
 
 <div style="margin:0 auto;width:55%;text-align:left">
-<form method="post" action="" ENCTYPE="multipart/form-data">
 
-
-<!-- your regular form follows -->
+<form action="/done" method="post" accept-charset="utf-8">
 <table width=518 border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+
   <tr bgcolor="#E5E5E5">
     <td height="22" colspan="3" align="left" valign="middle"><strong>&nbsp;Billing Information (required)</strong></td>
   </tr>
@@ -41,15 +40,15 @@
   </tr>
   <tr>
       <td height="22" align="right" valign="middle">Phone:</td>
-      <td colspan="2" align="left"><input name="phone" type="text" value="" size="50"></td>
+      <td colspan="2" align="left"><input name="phone" type="text" size="50"></td>
     </tr>
   <tr>
-      <td height="22" align="right" valign="middle">Contact Email:</td>
-      <td colspan="2" align="left"><input name="contactEmail" type="text" value="" size="50"></td>
+      <td height="22" align="right" valign="middle">Email:</td>
+      <td colspan="2" align="left"><input name="email" type="text" size="50"></td>
     </tr>
   <tr>
       <td height="22" align="right" valign="top">Address:</td>
-      <td colspan="2" align="left"><textarea name="notes" cols="52" rows="4"></textarea></td>
+      <td colspan="2" align="left"><textarea name="address" cols="52" rows="4"></textarea></td>
     </tr>
   <tr>
     <td height="22" colspan="3" align="left" valign="middle">&nbsp;</td>
@@ -59,7 +58,7 @@
   </tr>
   <tr>
     <td height="22" align="right" valign="middle">Credit Card Number:</td>
-    <td colspan="2" align="left"><input name="CCNo" type="text" value="" size="19" maxlength="40"></td>
+    <td colspan="2" align="left"><input name="CCNo" type="text" size="19" maxlength="40"></td>
   </tr>
   <tr>
     <td height="22" align="right" valign="middle">Expiry Date:</td>
@@ -99,9 +98,8 @@
 
 
 </table>
-<div class="col-sm-offset-10">
-<button type="submit" class="btn btn-primary">Submit</button>
-</div>
+
+<button type="submit" class="btn btn-primary" name = "items" value = "<%= item %>" >Submit</button>
 </form>
 
     </div>
