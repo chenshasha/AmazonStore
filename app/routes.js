@@ -4,16 +4,55 @@
 
 var Books           = require('../app/models/book');
 var User            = require('../app/models/user');
+var Item            = require('../app/models/item');
 
 
 module.exports = function(app, passport) {
 
+    //delete an item from cart
+    app.get(  '/destroy/:id', function ( req, res, next ){
+
+        console.log(req.user.id);
+        console.log(req.params.id);
+        Item.remove({buyer_id: req.user.id},{book_id: req.params.id}).exec();
+        res.redirect('/store');
+
+    });
+
+
+        //user.local.cart.remove({"id": req.params.id},function(req, res) {
+        //    res.render('cart.ejs', {
+        //        user : req.user // get the user out of session and pass to template
+        //    });
+
+        //});
+
+        //user.find( {local:{cart:{$elemMatch: {id : req.params.id}}}}, function ( err, item ){
+        //    console.log(item);
+            //item.remove( function ( err, item ){
+            //    if( err ) return next( err );
+
+            //    res.redirect( '/viewcart' );
+            //});
+        //});
+
+
     // add item to chart
     app.post(  '/cart', isLoggedIn, function(req, res) {
 
-        //console.log(req.param('addBookID'));
-        //console.log(req.user.local.cart);
-        //req.user.local.cart.save({$push: {id : req.param('addBookID'), quantity: "1"}});
+        //try to add to item database
+
+        var current_user = req.user;
+        var current_book = Books.findById(req.param('addBookID'));
+        var item = new Item();
+        item.quantity = "1";
+        item.modifiedDate = new Date(),
+        item.buyer_id = req.user.id,
+        item.book_id  = req.param('addBookID');
+        item.status   = "incart";
+
+        // save the user
+        item.save();
 
         User.findById(req.user.id,function(err, result){
             result.local.cart.push({
@@ -29,8 +68,15 @@ module.exports = function(app, passport) {
     });
     app.get(  '/viewcart', isLoggedIn, function(req, res) {
 
-        res.render('cart.ejs', {
-            user : req.user // get the user out of session and pass to template
+        //res.render('cart.ejs', {
+        //    user : req.user // get the user out of session and pass to template
+        //});
+
+        Item.find({"buyer_id" : req.user.id}, function(err, item){
+            res.render('cart.ejs',{
+                item  : item,
+                user  : req.user
+            });
         });
 
     });
@@ -139,4 +185,5 @@ function isLoggedIn(req, res, next) {
 	// if they aren't redirect them to the home page
 	res.redirect('/');
 }
+
 

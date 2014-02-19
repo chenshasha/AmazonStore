@@ -5,6 +5,7 @@
 	<title>Amazon Store || Shopping Cart </title>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<style>
 		body 		{ padding-top:80px; word-wrap:break-word; }
@@ -23,13 +24,16 @@
 
 
 
-    <% user.local.cart.forEach( function ( book ){ %>
-          <div class="item">
-            <a class="update-link" href="/product/<%= book.id %>" title="View this book"><%= book.id %></a>
-            <a class="del-btn" href="/product/<%= book.id %>" title="Delete this book item">Delete</a>
-          </div>
-        <% }); %>
-        </div>
+
+
+    <% item.forEach( function ( item ){ %>
+               <div class="item">
+                 <a class="update-link" href="/product/<%= item.id %>" title="View this item"><%= item.id %></a>
+                 <a class="del-btn" href="/destroy/<%= item.book_id %>"  title="Delete this item item">Delete</a>
+               </div>
+             <% }); %>
+             </div>
+
 
 
 
