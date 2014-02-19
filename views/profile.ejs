@@ -14,6 +14,7 @@
 
 	<div class="page-header text-center">
 		<h1><span class="fa fa-anchor"></span> Shopper Profile </h1>
+		<a href="/viewcart" class="btn btn-default btn-sm">Cart   </a>
 		<a href="/store" class="btn btn-default btn-sm">Store</a>
 		<a href="/logout" class="btn btn-default btn-sm">Logout</a>
 	</div>
@@ -34,6 +35,22 @@
 		</div>
 
 	</div>
+	<div class="row">
+
+    		<!-- LOCAL INFORMATION -->
+    		<div class="col-sm-6">
+    			<div class="well">
+    				<h3><span class="fa fa-user"></span> Shopper Orders </h3>
+    					<p>
+    						<strong>Shopper</strong>: <%= user.local.email %><br>
+    						<strong>Last Login: </strong>: <%= user.local.lastDate %><br>
+    						<strong>Today Login: </strong>: <%= user.local.today %><br>
+    					</p>
+
+    			</div>
+    		</div>
+
+    	</div>
 
 </div>
 </body>

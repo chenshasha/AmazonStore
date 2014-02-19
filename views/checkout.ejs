@@ -1,0 +1,137 @@
+<!-- views/profile.ejs -->
+<!doctype html>
+<html>
+<head>
+	<title>Amazon Store || Check Out </title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<style>
+		body 		{ padding-top:80px; word-wrap:break-word; }
+	</style>
+</head>
+<body>
+<div class="container">
+
+	<div class="page-header text-center">
+		<h1><span class="fa fa-anchor"></span> Shopping Cart </h1>
+		<strong>Shopper</strong>: <%= user.local.email %><br>
+        <a href="/profile" class="btn btn-default btn-sm">Account  </a>
+        <a href="/store" class="btn btn-default btn-sm">Store  </a>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+	</div>
+
+<div style="margin:0 auto;width:55%;text-align:left">
+<form method="post" action="" ENCTYPE="multipart/form-data">
+
+
+<!-- your regular form follows -->
+<table width=518 border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+  <tr bgcolor="#E5E5E5">
+    <td height="22" colspan="3" align="left" valign="middle"><strong>&nbsp;Billing Information (required)</strong></td>
+  </tr>
+  <tr>
+    <td height="22" width="180" align="right" valign="middle">First Name:</td>
+    <td colspan="2" align="left"><input name="firstName" type="text" size="50"></td>
+  </tr>
+  <tr>
+    <td height="22" align="right" valign="middle">Last Name:</td>
+    <td colspan="2" align="left"><input name="lastName" type="text" size="50"></td>
+  </tr>
+  <tr>
+      <td height="22" align="right" valign="middle">Phone:</td>
+      <td colspan="2" align="left"><input name="phone" type="text" value="" size="50"></td>
+    </tr>
+  <tr>
+      <td height="22" align="right" valign="middle">Contact Email:</td>
+      <td colspan="2" align="left"><input name="contactEmail" type="text" value="" size="50"></td>
+    </tr>
+  <tr>
+      <td height="22" align="right" valign="top">Address:</td>
+      <td colspan="2" align="left"><textarea name="notes" cols="52" rows="4"></textarea></td>
+    </tr>
+  <tr>
+    <td height="22" colspan="3" align="left" valign="middle">&nbsp;</td>
+  </tr>
+  <tr bgcolor="#E5E5E5">
+    <td height="22" colspan="3" align="left" valign="middle"><strong>&nbsp;Credit Card (required)</strong></td>
+  </tr>
+  <tr>
+    <td height="22" align="right" valign="middle">Credit Card Number:</td>
+    <td colspan="2" align="left"><input name="CCNo" type="text" value="" size="19" maxlength="40"></td>
+  </tr>
+  <tr>
+    <td height="22" align="right" valign="middle">Expiry Date:</td>
+    <td colspan="2" align="left">
+      <SELECT NAME="CCExpiresMonth" >
+        <OPTION VALUE="" SELECTED>--Month--
+        <OPTION VALUE="01">January (01)
+        <OPTION VALUE="02">February (02)
+        <OPTION VALUE="03">March (03)
+        <OPTION VALUE="04">April (04)
+        <OPTION VALUE="05">May (05)
+        <OPTION VALUE="06">June (06)
+        <OPTION VALUE="07">July (07)
+        <OPTION VALUE="08">August (08)
+        <OPTION VALUE="09">September (09)
+        <OPTION VALUE="10">October (10)
+        <OPTION VALUE="11">November (11)
+        <OPTION VALUE="12">December (12)
+      </SELECT> /
+      <SELECT NAME="CCExpiresYear">
+        <OPTION VALUE="" SELECTED>--Year--
+        <OPTION VALUE="04">2004
+        <OPTION VALUE="05">2005
+        <OPTION VALUE="06">2006
+        <OPTION VALUE="07">2007
+        <OPTION VALUE="08">2008
+        <OPTION VALUE="09">2009
+        <OPTION VALUE="10">2010
+        <OPTION VALUE="11">2011
+        <OPTION VALUE="12">2012
+        <OPTION VALUE="13">2013
+        <OPTION VALUE="14">2014
+        <OPTION VALUE="15">2015
+      </SELECT>
+    </td>
+  </tr>
+
+
+</table>
+<div class="col-sm-offset-10">
+<button type="submit" class="btn btn-primary">Submit</button>
+</div>
+</form>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</body>
+</html>

@@ -9,8 +9,7 @@ var userSchema = mongoose.Schema({
         email        : String,
         password     : String,
         lastDate     : Date,
-        today        : Date,
-        cart         : []
+        today        : Date
     }
 
 });

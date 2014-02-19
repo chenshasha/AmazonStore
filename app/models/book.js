@@ -13,7 +13,7 @@ var bookSchema = mongoose.Schema({
         language     : String,
         ISBN         : String,
         stock        : String,
-        price        : String
+        price        : Number
 });
 
 module.exports = mongoose.model('Books', bookSchema);

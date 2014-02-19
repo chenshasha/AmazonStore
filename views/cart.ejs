@@ -23,16 +23,22 @@
 	</div>
 
 
-
-
-
+    <div style="margin:0 auto;width:45%">
     <% item.forEach( function ( item ){ %>
                <div class="item">
-                 <a class="update-link" href="/product/<%= item.id %>" title="View this item"><%= item.id %></a>
-                 <a class="del-btn" href="/destroy/<%= item.book_id %>"  title="Delete this item item">Delete</a>
+               <br>
+                 <a class="update-link" href="/product/<%= item.book_id %>" title="View this item"><%= item.id %></a>
+                 <a href="/destroy/<%= item.book_id %>"  class="btn btn-default">Remove from Cart</a>
                </div>
              <% }); %>
              </div>
+             </div>
+
+    <div class="col-sm-offset-10 col-sm-14">
+        <a href="/checkout" class="btn btn-primary"><span class="fa fa-user"></span> Check Out</a>
+    </div>
+
+
 
 
 

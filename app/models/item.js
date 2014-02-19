@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var itemSchema = mongoose.Schema({
     quantity     : String,
     modifiedDate : Date,
+    price        : Number,
     buyer_id     : String,
     status       : String,
     book_id      : String

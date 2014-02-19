@@ -9,6 +9,15 @@ var Item            = require('../app/models/item');
 
 module.exports = function(app, passport) {
 
+    //check out
+    app.get('/checkout', function(req, res) {
+        res.render('checkout.ejs',{
+            user  : req.user
+        }); // load the index.ejs file
+
+    });
+
+
     //delete an item from cart
     app.get(  '/destroy/:id', function ( req, res, next ){
 
@@ -20,65 +29,62 @@ module.exports = function(app, passport) {
     });
 
 
-        //user.local.cart.remove({"id": req.params.id},function(req, res) {
-        //    res.render('cart.ejs', {
-        //        user : req.user // get the user out of session and pass to template
-        //    });
-
-        //});
-
-        //user.find( {local:{cart:{$elemMatch: {id : req.params.id}}}}, function ( err, item ){
-        //    console.log(item);
-            //item.remove( function ( err, item ){
-            //    if( err ) return next( err );
-
-            //    res.redirect( '/viewcart' );
-            //});
-        //});
-
-
     // add item to chart
     app.post(  '/cart', isLoggedIn, function(req, res) {
 
         //try to add to item database
+        Books.findById(req.param('addBookID'),function(err, current_book){
 
-        var current_user = req.user;
-        var current_book = Books.findById(req.param('addBookID'));
-        var item = new Item();
-        item.quantity = "1";
-        item.modifiedDate = new Date(),
-        item.buyer_id = req.user.id,
-        item.book_id  = req.param('addBookID');
-        item.status   = "incart";
+            var item = new Item();
+            item.price = current_book.proice;
+            item.quantity = "1";
+            item.price = current_book.price;
+            item.modifiedDate = new Date(),
+                item.buyer_id = req.user.id,
+                item.book_id  = req.param('addBookID');
+            item.status   = "incart";
 
-        // save the user
-        item.save();
+            // save the user
+            item.save();
 
-        User.findById(req.user.id,function(err, result){
-            result.local.cart.push({
-                id: req.param('addBookID'),
-                quantity: "1"
-            })
-            result.save();
         });
 
         res.redirect('/store');
 
-
     });
+
     app.get(  '/viewcart', isLoggedIn, function(req, res) {
 
         //res.render('cart.ejs', {
         //    user : req.user // get the user out of session and pass to template
         //});
+        ////try to sum the total price
 
-        Item.find({"buyer_id" : req.user.id}, function(err, item){
+        Item.aggregate([
+            { $group: {
+                _id: '$buyer_id',
+                total: { $sum: '$price'}
+            }}
+        ], function (err, result) {
+                if (err) {
+                    //console.error(err);
+                } else {
+
+                        console.log(result[0]['total']);
+                }
+            }
+        );
+
+
+
+        Item.find({"buyer_id" : req.user.id}, function(err, item, total){
             res.render('cart.ejs',{
                 item  : item,
                 user  : req.user
+
+
             });
         });
-
     });
 
 
