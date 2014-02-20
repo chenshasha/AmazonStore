@@ -12,7 +12,7 @@ var bookSchema = mongoose.Schema({
         year         : String,
         language     : String,
         ISBN         : String,
-        stock        : String,
+        stock        : Number,
         price        : Number
 });
 

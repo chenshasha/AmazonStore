@@ -1,0 +1,66 @@
+<!-- views/profile.ejs -->
+<!doctype html>
+<html>
+<head>
+	<title>Amazon Store || View Order </title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<style>
+		body 		{ padding-top:80px; word-wrap:break-word; }
+	</style>
+</head>
+<body>
+<div class="container">
+
+	<div class="page-header text-center">
+		<h1><span class="fa fa-anchor"></span> Order Detail </h1>
+        <a href="/store" class="btn btn-default btn-sm">Store  </a>
+        <a href="/profile" class="btn btn-default btn-sm">Account  </a>
+        <a href="/viewcart" class="btn btn-default btn-sm">Cart   </a>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+	</div>
+
+
+    <div class="row text-center">
+          <form>
+            <strong >Order Date </strong>: <%= order.transactionDate %><br>
+            <br>
+            <strong>Order Total </strong>: $  <%= order.total %><br>
+            <br>
+            <strong>Buyer Name </strong>: <%= order.shopper_fn %> <%= order.shopper_ln %><br>
+            <br>
+            <strong>Buyer Email </strong>: <%= order.shopper_email %><br>
+            <br>
+            <strong>Buyer Phone </strong>: <%= order.shopper_phone %><br>
+            <br>
+            <strong>Address </strong>: <%= order.shopper_add %><br>
+
+          </form>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</body>
+</html>

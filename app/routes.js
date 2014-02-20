@@ -10,6 +10,23 @@ var Order = require('../app/models/order');
 
 module.exports = function (app, passport) {
 
+
+    //route to order page
+    app.get('/order/:id', isLoggedIn, function (req, res) {
+
+        Order.find({"_id": req.params.id}, function (err, order) {
+            if (err) {
+            };
+            res.render('order.ejs', {
+                user: req.user,
+                order: order[0]
+            });
+        });
+    });
+
+
+
+
     // check out
     app.post('/done', isLoggedIn, function (req, res) {
 
@@ -43,14 +60,21 @@ module.exports = function (app, passport) {
                         //console.error(err);
                     } else {
 
-                        //console.log(result[0]['total']);
                         order.total = result[0]['total'];
                         order.save();
-                        console.log(order.total);
                     }
-
                 }
             );
+
+
+            //decrease book quantity
+            Item.find({buyer_id: req.user.id}, function (err, items) {
+                items.forEach((function(item) {
+                    Books.update({_id: item.book_id},{$inc: {stock: -1}}).exec();
+                }));
+
+            });
+
 
             //remove checked out book from database item
             Item.remove({buyer_id: req.user.id}).exec();
@@ -75,12 +99,7 @@ module.exports = function (app, passport) {
 
 
     //delete an item from cart
-    app.get('/destroy/:id', function (req, res, next) {
 
-        Item.remove({buyer_id: req.user.id}, {book_id: req.params.id}).exec();
-        res.redirect('/store');
-
-    });
 
 
     // add item to chart
@@ -222,9 +241,18 @@ module.exports = function (app, passport) {
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/profile', isLoggedIn, function (req, res) {
-        res.render('profile.ejs', {
-            user: req.user // get the user out of session and pass to template
+
+        Order.find({"shopper_id": req.user.id}, function (err, order) {
+            res.render('profile.ejs', {
+                order: order,
+                user: req.user
+            });
         });
+
+
+//        res.render('profile.ejs', {
+//            user: req.user // get the user out of session and pass to template
+//        });
     });
 
     // =====================================

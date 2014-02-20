@@ -14,8 +14,8 @@
 
 	<div class="page-header text-center">
 		<h1><span class="fa fa-anchor"></span> Shopper Profile </h1>
-		<a href="/viewcart" class="btn btn-default btn-sm">Cart   </a>
 		<a href="/store" class="btn btn-default btn-sm">Store</a>
+		<a href="/viewcart" class="btn btn-default btn-sm">Cart   </a>
 		<a href="/logout" class="btn btn-default btn-sm">Logout</a>
 	</div>
 
@@ -26,7 +26,7 @@
 			<div class="well">
 				<h3><span class="fa fa-user"></span> Shopper Profile </h3>
 					<p>
-						<strong>Shopper</strong>: <%= user.local.email %><br>
+						<strong>Shopper</strong>: <%= user.local.firstName %> <%= user.local.lastName %><br>
 						<strong>Last Login: </strong>: <%= user.local.lastDate %><br>
 						<strong>Today Login: </strong>: <%= user.local.today %><br>
 					</p>
@@ -41,11 +41,18 @@
     		<div class="col-sm-6">
     			<div class="well">
     				<h3><span class="fa fa-user"></span> Shopper Orders </h3>
-    					<p>
-    						<strong>Shopper</strong>: <%= user.local.email %><br>
-    						<strong>Last Login: </strong>: <%= user.local.lastDate %><br>
-    						<strong>Today Login: </strong>: <%= user.local.today %><br>
-    					</p>
+    				    <ol>
+    					<% order.forEach( function ( order ){ %>
+    					               <li>
+                                       <div class="item">
+                                         <a class="update-link" href="/order/<%= order._id %>" title="View this item"><%= order._id %></a>
+
+                                       </div>
+                                       </li>
+                                     <% }); %>
+                                     </div>
+                                     </ol>
+                                     </div>
 
     			</div>
     		</div>

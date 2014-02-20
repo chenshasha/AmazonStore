@@ -16,7 +16,6 @@
 
 	<div class="page-header text-center">
 		<h1><span class="fa fa-anchor"></span> Shopping Cart </h1>
-		<strong>Shopper</strong>: <%= user.local.email %><br>
         <a href="/profile" class="btn btn-default btn-sm">Account  </a>
         <a href="/store" class="btn btn-default btn-sm">Store  </a>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
@@ -32,23 +31,23 @@
   </tr>
   <tr>
     <td height="22" width="180" align="right" valign="middle">First Name:</td>
-    <td colspan="2" align="left"><input name="firstName" type="text" size="50"></td>
+    <td colspan="2" align="left"><input name="firstName" type="text" size="50" required></td>
   </tr>
   <tr>
     <td height="22" align="right" valign="middle">Last Name:</td>
-    <td colspan="2" align="left"><input name="lastName" type="text" size="50"></td>
+    <td colspan="2" align="left"><input name="lastName" type="text" size="50" required></td>
   </tr>
   <tr>
       <td height="22" align="right" valign="middle">Phone:</td>
-      <td colspan="2" align="left"><input name="phone" type="text" size="50"></td>
+      <td colspan="2" align="left"><input name="phone" type="text" size="50" required></td>
     </tr>
   <tr>
       <td height="22" align="right" valign="middle">Email:</td>
-      <td colspan="2" align="left"><input name="email" type="text" size="50"></td>
+      <td colspan="2" align="left"><input name="email" type="email" size="50" required></td>
     </tr>
   <tr>
       <td height="22" align="right" valign="top">Address:</td>
-      <td colspan="2" align="left"><textarea name="address" cols="52" rows="4"></textarea></td>
+      <td colspan="2" align="left"><textarea name="address" cols="52" rows="4" required></textarea></td>
     </tr>
   <tr>
     <td height="22" colspan="3" align="left" valign="middle">&nbsp;</td>
@@ -58,12 +57,12 @@
   </tr>
   <tr>
     <td height="22" align="right" valign="middle">Credit Card Number:</td>
-    <td colspan="2" align="left"><input name="CCNo" type="text" size="19" maxlength="40"></td>
+    <td colspan="2" align="left"><input name="CCNo" type="text" pattern=".{16}" title="Please input 16 digits"required></td>
   </tr>
   <tr>
     <td height="22" align="right" valign="middle">Expiry Date:</td>
     <td colspan="2" align="left">
-      <SELECT NAME="CCExpiresMonth" >
+      <SELECT NAME="CCExpiresMonth" required>
         <OPTION VALUE="" SELECTED>--Month--
         <OPTION VALUE="01">January (01)
         <OPTION VALUE="02">February (02)
@@ -78,20 +77,14 @@
         <OPTION VALUE="11">November (11)
         <OPTION VALUE="12">December (12)
       </SELECT> /
-      <SELECT NAME="CCExpiresYear">
+      <SELECT NAME="CCExpiresYear" required>
         <OPTION VALUE="" SELECTED>--Year--
-        <OPTION VALUE="04">2004
-        <OPTION VALUE="05">2005
-        <OPTION VALUE="06">2006
-        <OPTION VALUE="07">2007
-        <OPTION VALUE="08">2008
-        <OPTION VALUE="09">2009
-        <OPTION VALUE="10">2010
-        <OPTION VALUE="11">2011
-        <OPTION VALUE="12">2012
-        <OPTION VALUE="13">2013
-        <OPTION VALUE="14">2014
         <OPTION VALUE="15">2015
+        <OPTION VALUE="16">2016
+        <OPTION VALUE="17">2017
+        <OPTION VALUE="18">2018
+        <OPTION VALUE="19">2019
+        <OPTION VALUE="20">2020
       </SELECT>
     </td>
   </tr>

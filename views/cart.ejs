@@ -16,22 +16,25 @@
 
 	<div class="page-header text-center">
 		<h1><span class="fa fa-anchor"></span> Shopping Cart </h1>
-		<strong>Shopper</strong>: <%= user.local.email %><br>
+		<a href="/store" class="btn btn-default btn-sm">Store  </a>
         <a href="/profile" class="btn btn-default btn-sm">Account  </a>
-        <a href="/store" class="btn btn-default btn-sm">Store  </a>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
 	</div>
 
 
     <div style="margin:0 auto;width:45%">
+    <ol>
     <% item.forEach( function ( item ){ %>
+               <li>
                <div class="item">
-               <br>
-                 <a class="update-link" href="/product/<%= item.book_id %>" title="View this item"><%= item.id %></a>
+
+                 <a class="update-link" href="/product/<%= item.book_id %>" title="View this item"><%= item.book_title %></a>
                  <a href="/destroy/<%= item.book_id %>"  class="btn btn-default">Remove from Cart</a>
                </div>
+               </li>
              <% }); %>
              </div>
+             </ol>
              </div>
 
     <div class="col-sm-offset-10 col-sm-14">
