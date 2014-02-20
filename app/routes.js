@@ -30,29 +30,7 @@ module.exports = function (app, passport) {
             order.shopper_CC_Exp_Month = req.param('CCExpiresMonth');
             order.shopper_CC_Exp_Year = req.param('CCExpiresYear');
             order.items.push(req.param('items'));
-            console.log(order.items);
             order.save();
-
-
-            //push book info to order
-//            Item.find({"buyer_id" : req.user.id}, function(err, item){
-//                //order.items.push(item.book_id);
-//                //order.items.save({$push: {book_id : item.book_id}});
-//                order.items.push({book_id : item.book_id});
-//            });
-
-
-//example: how to push to array.
-//            User.findById(req.user.id,function(err, result){
-//                result.local.cart.push({
-//                    id: req.param('addBookID'),
-//                    quantity: "1"
-//
-//                })
-//                result.save();
-//
-//            });
-
 
             // get total
             Item.aggregate([
@@ -65,13 +43,17 @@ module.exports = function (app, passport) {
                         //console.error(err);
                     } else {
 
-                        console.log(result[0]['total']);
+                        //console.log(result[0]['total']);
                         order.total = result[0]['total'];
+                        order.save();
+                        console.log(order.total);
                     }
+
                 }
             );
 
-            order.save();
+            //remove checked out book from database item
+            Item.remove({buyer_id: req.user.id}).exec();
 
         });
 
@@ -95,8 +77,6 @@ module.exports = function (app, passport) {
     //delete an item from cart
     app.get('/destroy/:id', function (req, res, next) {
 
-        console.log(req.user.id);
-        console.log(req.params.id);
         Item.remove({buyer_id: req.user.id}, {book_id: req.params.id}).exec();
         res.redirect('/store');
 
@@ -116,7 +96,8 @@ module.exports = function (app, passport) {
             item.modifiedDate = new Date(),
             item.buyer_id     = req.user.id,
             item.book_id      = req.param('addBookID');
-
+            item.book_author  = current_book.author;
+            item.book_title   = current_book.title;
 
             // save the user
             item.save();
@@ -144,7 +125,7 @@ module.exports = function (app, passport) {
                     //console.error(err);
                 } else {
 
-                    console.log(result[0]['total']);
+                    //console.log(result[0]['total']);
                 }
             }
         );

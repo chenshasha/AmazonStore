@@ -9,7 +9,9 @@ var itemSchema = mongoose.Schema({
     modifiedDate : Date,
     price        : Number,
     buyer_id     : String,
-    book_id      : String
+    book_id      : String,
+    book_title   : String,
+    book_author  : String
 
 });
 
