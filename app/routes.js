@@ -1,14 +1,23 @@
 // app/routes.js
-//var mongoose = require( 'mongoose' );
-//var Store    = mongoose.model( 'Store' );
+
 
 var Books = require('../app/models/book');
 var User = require('../app/models/user');
 var Item = require('../app/models/item');
 var Order = require('../app/models/order');
+var mongoose = require('mongoose');
 
 
 module.exports = function (app, passport) {
+
+    //remove from cart
+    //route to order page
+    app.get('/destroy/:id', isLoggedIn, function (req, res) {
+
+        Item.remove({buyer_id: req.user.id},{book_id: req.params.id} ).exec();
+        res.redirect('/store');
+    });
+
 
 
     //route to order page
@@ -261,6 +270,7 @@ module.exports = function (app, passport) {
     app.get('/logout', function (req, res) {
         req.logout();
         res.redirect('/');
+        mongoose.connection.close();
     });
 };
 
