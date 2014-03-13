@@ -9,11 +9,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var flash = require('connect-flash');
 
-var configDB = require('./config/database.js');
 
-// configuration ===============================================================
-mongoose.connect(configDB.url); // connect to our database
-//var db = mongoose.connection;
 
 
 require('./config/passport')(passport); // pass passport for configuration
@@ -38,7 +34,26 @@ app.configure(function () {
 
 
 // routes ======================================================================
-require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+//use mongodb only
+//require('./app/routes.js')(app, passport);
+//var configDB = require('./config/database.js');
+//mongoose.connect(configDB.url); // connect to our database
+//var db = mongoose.connection;
+//===============================================================
+
+
+
+//no pooling and no caching but use both mysql and mongodb
+//require('./app/routes-mysql&mongo.js')(app, passport);
+
+//use pooling and no caching
+require('./app/routes-pooling.js')(app, passport);
+
+//use caching and no pooling
+//require('./app/routes-caching.js')(app, passport);
+
+
+
 
 
 // launch ======================================================================
