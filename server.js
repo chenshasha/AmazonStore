@@ -47,10 +47,10 @@ app.configure(function () {
 //require('./app/routes-mysql&mongo.js')(app, passport);
 
 //use pooling and no caching
-require('./app/routes-pooling.js')(app, passport);
+//require('./app/routes-pooling.js')(app, passport);
 
 //use caching and no pooling
-//require('./app/routes-caching.js')(app, passport);
+require('./app/routes-caching.js')(app, passport);
 
 
 

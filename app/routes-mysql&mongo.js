@@ -292,9 +292,9 @@ module.exports = function (app, passport) {
     app.get('/logout', function (req, res) {
         req.logout();
         res.redirect('/');
-//        connection.end(function(err) {
-//            // The connection is terminated now
-//        });
+        connection.end(function(err) {
+            // The connection is terminated now
+        });
         mongoose.connection.close();
     });
 };
